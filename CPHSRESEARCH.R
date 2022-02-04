@@ -1,59 +1,64 @@
-# Stat 382 Final Project
 # Group 1
 # Eric Navarro, Nelson Corral, Zehra Amir, Pooja Patel
 
-setwd("/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project")
+## DISCLIAMER: THIS CODE BELOW WAS DONE TO CLEAN AND SUBSET THE ORIGINAL DATA SHEET FROM CPS.EDU
+## DATA CLEANING WAS DONE ON POOJAS COMPUTER AND FORWARDED TO THE REST OF GROUP. 
 
-# Cleaning and Subsetting the Original Dataset
-original <-
-  read.csv(
-    "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/CPS School Progress Reports SY1617.csv"
-  )
-summary(original)
+# setwd("/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project")
+# 
+# # Cleaning and Subsetting the Original Dataset
+# original <-
+#   read.csv(
+#     "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/CPS School Progress Reports SY1617.csv"
+#   )
+# summary(original)
+# 
+# # The original dataset we found consisted of 661 observations of 161 variables.
+# # It consisted of schools of all primary levels and had the results of
+# # standardized tests that are administered to students in 3rd grade up to 8th
+# # grade. We decided to focus specifically on high schools and the academic
+# # performance of high schoolers.
+# 
+# # Subsetting Dataset to Include Only High Schools
+# just_HS <- data.frame(original[original$Primary_Category=="HS",])
+# write.csv(
+#   just_HS,
+#   "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/CPS High Schools All Variables.csv"
+# )
+# 
+# #Subsetting Dataset to Include A Smaller Variety of Variables
+# new_HS <-data.frame(just_HS[,c(1,2,3,4,5,14,20,26,94,95,96,97,98,99,100,101,114,
+#                                115,120,121,127,128,133,134,135,136,137,138,139,
+#                                140,141,142,161)])
+# write.csv(new_HS, "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/Final CPS High Schools Curated Variables.csv")
+# 
+# #Removing High Schools with Missing Data
+# all_NA_removed_HS <-
+#   data.frame(new_HS[which(
+#     !(
+#       is.na(new_HS$Suspensions_Per_100_Students_Year_1_Pct) |
+#         is.na(new_HS$Suspensions_Per_100_Students_Year_2_Pct) |
+#         is.na(new_HS$Student_Attendance_Year_1_Pct) |
+#         is.na(new_HS$Student_Attendance_Year_2_Pct) |
+#         is.na(new_HS$One_Year_Dropout_Rate_Year_1_Pct) |
+#         is.na(new_HS$One_Year_Dropout_Rate_Year_2_Pct) |
+#         is.na(new_HS$Attainment_ACT_Grade_11_Pct) |
+#         is.na(new_HS$Graduation_4_Year_School_Pct_Year_2) |
+#         is.na(new_HS$Graduation_4_Year_School_Pct_Year_1) |
+#         is.na(new_HS$Graduation_5_Year_School_Pct_Year_2) |
+#         is.na(new_HS$Graduation_5_Year_School_Pct_Year_1) |
+#         is.na(new_HS$College_Enrollment_School_Pct_Year_2)
+#     )
+#   ),])
+# 
+# write.csv(all_NA_removed_HS, "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/Final Cleaned CPS High Schools Data.csv")
 
-# The original dataset we found consisted of 661 observations of 161 variables.
-# It consisted of schools of all primary levels and had the results of
-# standardized tests that are administered to students in 3rd grade up to 8th
-# grade. We decided to focus specifically on high schools and the academic
-# performance of high schoolers.
-
-# Subsetting Dataset to Include Only High Schools
-just_HS <- data.frame(original[original$Primary_Category=="HS",])
-write.csv(
-  just_HS,
-  "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/CPS High Schools All Variables.csv"
-)
-
-#Subsetting Dataset to Include A Smaller Variety of Variables
-new_HS <-data.frame(just_HS[,c(1,2,3,4,5,14,20,26,94,95,96,97,98,99,100,101,114,
-                               115,120,121,127,128,133,134,135,136,137,138,139,
-                               140,141,142,161)])
-write.csv(new_HS, "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/Final CPS High Schools Curated Variables.csv")
-
-#Removing High Schools with Missing Data
-all_NA_removed_HS <-
-  data.frame(new_HS[which(
-    !(
-      is.na(new_HS$Suspensions_Per_100_Students_Year_1_Pct) |
-        is.na(new_HS$Suspensions_Per_100_Students_Year_2_Pct) |
-        is.na(new_HS$Student_Attendance_Year_1_Pct) |
-        is.na(new_HS$Student_Attendance_Year_2_Pct) |
-        is.na(new_HS$One_Year_Dropout_Rate_Year_1_Pct) |
-        is.na(new_HS$One_Year_Dropout_Rate_Year_2_Pct) |
-        is.na(new_HS$Attainment_ACT_Grade_11_Pct) |
-        is.na(new_HS$Graduation_4_Year_School_Pct_Year_2) |
-        is.na(new_HS$Graduation_4_Year_School_Pct_Year_1) |
-        is.na(new_HS$Graduation_5_Year_School_Pct_Year_2) |
-        is.na(new_HS$Graduation_5_Year_School_Pct_Year_1) |
-        is.na(new_HS$College_Enrollment_School_Pct_Year_2)
-    )
-  ),])
-
-write.csv(all_NA_removed_HS, "/Users/poojapatel/Documents/UIC Junior Fall Semester/Stat 382/Final Project/Final Cleaned CPS High Schools Data.csv")
+#Setting my personal directory
+setwd("/Users/nelsonc016/Desktop/Stats382")
 
 # Final Dataset with Composite ACT Scores Added
 
-high_school_data <- read.csv("Final Cleaned CPS High Schools Data 2.csv")
+high_school_data <- read.csv("/Users/nelsonc016/Desktop/Stats382/Final Cleaned CPS High Schools Data 2.csv")
 
 # Our final subsetted dataset consists of 81 observations of 39 variables. Out
 # of the 39 variables our group looked at 8 particular variables during our
@@ -105,7 +110,7 @@ student_attainment_counts
 barplot(
   student_attainment_counts,
   main = "Student Attainment Ratings",
-  xlab = "Student Attainment Rating",
+  xlab = "Student Attainment Ratings",
   ylab = "Number of Schools",
   cex.names = 0.5,
   col = "lightseagreen"
@@ -214,7 +219,7 @@ qqline(high_school_data$Composite.ACT.Score)
 
 # Significance Test for Graduation Rate
 
-# Reported 4 Year Gradution Rate in CPS Schools
+# Reported 4 Year Graduation Rate in CPS Schools
 
 # We ran a significance test to determine whether the average graduation rate of
 # the schools in our dataset differs from the reported average graduation rate
